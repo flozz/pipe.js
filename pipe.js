@@ -29,20 +29,28 @@
 
 var Pipe = (function() {
 
-    var Pipe = function(endCallback, stopCallback) {
+    var Pipe = function(endCallback, stopCallback, progressCallback) {
         this._jobs = [];
-        this._endCallback = endCallback || function(){};
-        this._stopCallback = stopCallback || function(){};
+        this.endCallback = endCallback || function(){};
+        this.stopCallback = stopCallback || function(){};
+        this.progressCallback = progressCallback || function(){};
         this._stopped = true;
     };
 
-    Pipe.prototype.add = function(job) {
+    Pipe.prototype.add = function(job, arg) {
         this._jobs.push({});
         var jobId = this._jobs.length - 1;
 
         this._jobs[jobId].job = job;
         this._jobs[jobId].stop = this.stop.bind(this);
         this._jobs[jobId].next = this._next.bind(this, jobId);
+        this._jobs[jobId].args = (arg) ? [arg] : [];
+    };
+
+    Pipe.prototype.addAll = function(job, argList) {
+        for (var i=0 ; i<argList.length ; i++) {
+            this.add(job, argList[i]);
+        }
     };
 
     Pipe.prototype.run = function() {
@@ -58,13 +66,16 @@ var Pipe = (function() {
 
     Pipe.prototype.stop = function() {
         this._stopped = true;
-        this._stopCallback.call(this, arguments);
+        this.stopCallback.call(this, arguments);
     };
 
     Pipe.prototype._next = function(jobId) {
         if (this._stopped) {
             return;
         }
+        // Progress
+        this.progressCallback(jobId / (this._jobs.length - 1));
+        // All done
         if (jobId == this._jobs.length -1) {
             var args = [];
             if (arguments.length > 1) {
@@ -73,12 +84,12 @@ var Pipe = (function() {
                 }
             }
             this._stopped = true;
-            this._endCallback.apply(this, args);
+            this.endCallback.apply(this, args);
             return;
         }
-
+        // Next Job
         jobId++;
-        var args = [this._jobs[jobId]];
+        var args = [this._jobs[jobId]].concat(this._jobs[jobId].args);
         if (arguments.length > 1) {
             for (var i=1 ; i<arguments.length ; i++) {
                 args.push(arguments[i]);
