@@ -66,7 +66,7 @@ var Pipe = (function() {
 
     Pipe.prototype.stop = function() {
         this._stopped = true;
-        this.stopCallback.call(this, arguments);
+        this.stopCallback.apply(this, arguments);
     };
 
     Pipe.prototype._next = function(jobId) {
@@ -95,7 +95,12 @@ var Pipe = (function() {
                 args.push(arguments[i]);
             }
         }
-        this._jobs[jobId].job.apply(this, args);
+        try {
+            this._jobs[jobId].job.apply(this, args);
+        }
+        catch (error) {
+            this.stop(error);
+        }
     };
 
     return Pipe;
