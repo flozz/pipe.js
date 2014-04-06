@@ -44,7 +44,7 @@ var Pipe = (function() {
         this._jobs[jobId].job = job;
         this._jobs[jobId].stop = this.stop.bind(this);
         this._jobs[jobId].next = this._next.bind(this, jobId);
-        this._jobs[jobId].args = (arg) ? [arg] : [];
+        this._jobs[jobId].args = (arg !== undefined) ? [arg] : [];
     };
 
     Pipe.prototype.addAll = function(job, argList) {

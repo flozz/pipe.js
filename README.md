@@ -21,6 +21,11 @@ var p = new Pipe(
             console.log("Oops!");
         }
 
+        // On progress
+        function(progress) {
+            console.log("Progress: " + Math.round(progress*100) + "%");
+        }
+
 );
 
 // Job 1
