@@ -1,0 +1,13 @@
+{
+    "name": "Pipe.js",
+    "description": "Simply queue asynchrone jobs.",
+    "version": "1.0",
+    "url": "https://github.com/flozz/pipe.js",
+    "options": {
+        "linkNatives": "true",
+        "attributesEmit": "true",
+        "selleck": "true",
+        "paths": ["./"],
+        "outdir": "./doc/"
+    }
+}

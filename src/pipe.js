@@ -29,30 +29,73 @@
 
 var Pipe = (function() {
 
-    var Pipe = function(endCallback, stopCallback, progressCallback) {
+    /**
+     * Asynchronous job queue.
+     *
+     * @class Pipe
+     * @constructor
+     * @param {Function} successCallback Called when everything is done successfully
+     *                                   (optional).
+     * @param {Function} errorCallback Called when something goes wrong (optional).
+     * @param {Function} progressCallback Called each time a task is done (optional,
+     *                                    callback: `function(progress){}` where
+     *                                    progress is a number between 0 and 1).
+     */
+    var Pipe = function(successCallback, errorCallback, progressCallback) {
         this._jobs = [];
-        this.endCallback = endCallback || function(){};
-        this.stopCallback = stopCallback || function(){};
+        this.successCallback = successCallback || function(){};
+        this.errorCallback = errorCallback || function(){};
         this.progressCallback = progressCallback || function(){};
         this._stopped = true;
     };
 
+    /**
+     * Add a job to the pipe.
+     *
+     * Job callback:
+     *
+     *     function(pipe, [optional arg]) {}
+     *
+     * @method add
+     * @param {Function} job The job callback.
+     * @param arg An optional arg that will be passed as second argument of
+     *            the job function.
+     */
     Pipe.prototype.add = function(job, arg) {
         this._jobs.push({});
         var jobId = this._jobs.length - 1;
 
         this._jobs[jobId].job = job;
-        this._jobs[jobId].stop = this.stop.bind(this);
-        this._jobs[jobId].next = this._next.bind(this, jobId);
+        this._jobs[jobId].error = this._error.bind(this);
+        this._jobs[jobId].done = this._next.bind(this, jobId);
         this._jobs[jobId].args = (arg !== undefined) ? [arg] : [];
     };
 
+    /**
+     * Add a job for each item of the argument list.
+     *
+     * Job callback:
+     *
+     *     function(pipe, arg) {}
+     *
+     * @method addAll
+     * @param {Function} job The job callback.
+     * @param {Array} argList Argument list (each item of the list will be passed
+     *                        as second argument of the job function).
+     */
     Pipe.prototype.addAll = function(job, argList) {
         for (var i=0 ; i<argList.length ; i++) {
             this.add(job, argList[i]);
         }
     };
 
+    /**
+     * Run the pipe.
+     *
+     * @method run
+     * @param * Any argument passed to this function will be passed to
+     *          the first job function.
+     */
     Pipe.prototype.run = function() {
         this._stopped = false;
         var args = [-1];
@@ -64,11 +107,28 @@ var Pipe = (function() {
         this._next.apply(this, args);
     };
 
-    Pipe.prototype.stop = function() {
+    /**
+     * Must be called if any error append in a job.
+     *
+     * @method _error
+     * @private
+     * @param * Any argument passed to this function will be passed to the
+     *          errorCallback function.
+     */
+    Pipe.prototype._error = function() {
         this._stopped = true;
-        this.stopCallback.apply(this, arguments);
+        this.errorCallback.apply(this, arguments);
     };
 
+    /**
+     * Must be called by each jobs when they are finished.
+     *
+     * @method _next
+     * @private
+     * @param jobId The id of the job.
+     * @param * Any additional argument passed to this function will be passed to the next
+     *          job function or to the successCallback function if it is the last job.
+     */
     Pipe.prototype._next = function(jobId) {
         if (this._stopped) {
             return;
@@ -84,7 +144,7 @@ var Pipe = (function() {
                 }
             }
             this._stopped = true;
-            this.endCallback.apply(this, args);
+            this.successCallback.apply(this, args);
             return;
         }
         // Next Job
@@ -99,9 +159,35 @@ var Pipe = (function() {
             this._jobs[jobId].job.apply(this, args);
         }
         catch (error) {
-            this.stop(error);
+            this.error(error);
         }
     };
 
     return Pipe;
+
+
+    // == Doc for pipe object ==
+
+    /**
+     * pipe object that is passed as first parameter of each job function.
+     *
+     * @Class Jobs pipe object
+     */
+    /**
+     * Must be called by the job when it was sucessfully finished.
+     *
+     * @method done
+     * @static
+     * @param * Any argument passed to this function will be passed to the next
+     *          job function or to the successCallback function if it is the last job.
+     */
+    /**
+     * Must be called by the job when an error occure (that will
+     * stop the pipe and call the errorCallback function).
+     *
+     * @method error
+     * @static
+     * @param * Any argument passed to this function will be passed to the
+     *          errorCallback function.
+     */
 })();

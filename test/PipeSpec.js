@@ -4,46 +4,46 @@ describe("Pipe asynchronous jobs without error", function() {
 
     p.add(function(pipe, value) {
         setTimeout(function() {
-            pipe.next(value + 1);
+            pipe.done(value + 1);
         }, 10);
     });
 
     p.add(function(pipe, value) {
         setTimeout(function() {
-            pipe.next(value + 2);
+            pipe.done(value + 2);
         }, 10);
     });
 
     //
 
     beforeEach(function() {
-        spyOn(p, "endCallback");
-        spyOn(p, "stopCallback");
+        spyOn(p, "successCallback");
+        spyOn(p, "errorCallback");
         spyOn(p, "progressCallback");
     });
 
     it("tracks callbacks", function(done) {
         p.run();
         setTimeout(function() {
-            expect(p.endCallback).toHaveBeenCalled();
-            expect(p.stopCallback).not.toHaveBeenCalled();
+            expect(p.successCallback).toHaveBeenCalled();
+            expect(p.errorCallback).not.toHaveBeenCalled();
             expect(p.progressCallback).toHaveBeenCalled();
             done();
         }, 100);
     });
 
-    it("checks result with input=0", function(done) {
+    it("checks result for input=0", function(done) {
         p.run(0);
         setTimeout(function() {
-            expect(p.endCallback).toHaveBeenCalledWith(3);
+            expect(p.successCallback).toHaveBeenCalledWith(3);
             done();
         }, 100);
     });
 
-    it("checks result with input=10", function(done) {
+    it("checks result for input=10", function(done) {
         p.run(10);
         setTimeout(function() {
-            expect(p.endCallback).toHaveBeenCalledWith(13);
+            expect(p.successCallback).toHaveBeenCalledWith(13);
             done();
         }, 100);
     });
@@ -67,29 +67,29 @@ describe("Pipe asynchronous jobs with error", function() {
 
     p.add(function(pipe) {
         setTimeout(function() {
-            pipe.next();
+            pipe.done();
         }, 10);
     });
 
     p.add(function(pipe) {
         setTimeout(function() {
-            pipe.stop("Error!");
+            pipe.error("Error!");
         }, 10);
     });
 
     //
 
     beforeEach(function() {
-        spyOn(p, "endCallback");
-        spyOn(p, "stopCallback");
+        spyOn(p, "successCallback");
+        spyOn(p, "errorCallback");
         spyOn(p, "progressCallback");
         p.run();
     });
 
     it("tracks callbacks", function(done) {
         setTimeout(function() {
-            expect(p.endCallback).not.toHaveBeenCalled();
-            expect(p.stopCallback).toHaveBeenCalled();
+            expect(p.successCallback).not.toHaveBeenCalled();
+            expect(p.errorCallback).toHaveBeenCalled();
             expect(p.progressCallback).toHaveBeenCalled();
             done();
         }, 100);
@@ -97,7 +97,7 @@ describe("Pipe asynchronous jobs with error", function() {
 
     it("checks error", function(done) {
         setTimeout(function() {
-            expect(p.stopCallback).toHaveBeenCalledWith("Error!");
+            expect(p.errorCallback).toHaveBeenCalledWith("Error!");
             done();
         }, 100);
     });
@@ -120,40 +120,40 @@ describe("Pipe asynchronous jobs with a list of value (.addAll())", function() {
 
     p.addAll(function(pipe, value, input) {
         setTimeout(function() {
-            pipe.next(input + value);
+            pipe.done(input + value);
         }, 10);
     }, [1, 2, 4, 8]);
 
     //
 
     beforeEach(function() {
-        spyOn(p, "endCallback");
-        spyOn(p, "stopCallback");
+        spyOn(p, "successCallback");
+        spyOn(p, "errorCallback");
         spyOn(p, "progressCallback");
     });
 
     it("tracks callbacks", function(done) {
         p.run();
         setTimeout(function() {
-            expect(p.endCallback).toHaveBeenCalled();
-            expect(p.stopCallback).not.toHaveBeenCalled();
+            expect(p.successCallback).toHaveBeenCalled();
+            expect(p.errorCallback).not.toHaveBeenCalled();
             expect(p.progressCallback).toHaveBeenCalled();
             done();
         }, 100);
     });
 
-    it("checks result with input=0", function(done) {
+    it("checks result for input=0", function(done) {
         p.run(0);
         setTimeout(function() {
-            expect(p.endCallback).toHaveBeenCalledWith(15);
+            expect(p.successCallback).toHaveBeenCalledWith(15);
             done();
         }, 200);
     });
 
-    it("checks result with input=10", function(done) {
+    it("checks result for input=10", function(done) {
         p.run(10);
         setTimeout(function() {
-            expect(p.endCallback).toHaveBeenCalledWith(25);
+            expect(p.successCallback).toHaveBeenCalledWith(25);
             done();
         }, 200);
     });

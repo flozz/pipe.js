@@ -1,0 +1,360 @@
+{
+    "project": {
+        "name": "Pipe.js",
+        "description": "Simply queue asynchrone jobs.",
+        "version": "1.0",
+        "url": "https://github.com/flozz/pipe.js"
+    },
+    "files": {
+        "test/jasmine-2.0.0/boot.js": {
+            "name": "test/jasmine-2.0.0/boot.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "pipe.js": {
+            "name": "pipe.js",
+            "modules": {},
+            "classes": {
+                "Pipe": 1,
+                "Jobs pipe object": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Pipe": {
+            "name": "Pipe",
+            "shortname": "Pipe",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "pipe.js",
+            "line": 32,
+            "description": "Asynchronous job queue.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "successCallback",
+                    "description": "Called when everything is done successfully\n                                  (optional).",
+                    "type": "Function"
+                },
+                {
+                    "name": "errorCallback",
+                    "description": "Called when something goes wrong (optional).",
+                    "type": "Function"
+                },
+                {
+                    "name": "progressCallback",
+                    "description": "Called each time a task is done (optional,\n                                   callback: `function(progress){}` where\n                                   progress is a number between 0 and 1).",
+                    "type": "Function"
+                }
+            ]
+        },
+        "Jobs pipe object": {
+            "name": "Jobs pipe object",
+            "shortname": "Jobs pipe object",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "pipe.js",
+            "line": 171,
+            "description": "pipe object that is passed as first parameter of each job function."
+        }
+    },
+    "classitems": [
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 1,
+            "description": "Starting with version 2.0, this file \"boots\" Jasmine, performing all of the necessary initialization before executing the loaded environment and all of a project's specs. This file should be loaded after `jasmine.js`, but before any project source files or spec files are loaded. Thus this file can also be used to customize Jasmine for a project.\n\nIf a project is using Jasmine via the standalone distribution, this file can be customized directly. If a project is using Jasmine via the [Ruby gem][jasmine-gem], this file can be copied into the support directory via `jasmine copy_boot_js`. Other environments (e.g., Python) will have different mechanisms.\n\nThe location of `boot.js` can be specified and/or overridden in `jasmine.yml`.\n\n[jasmine-gem]: http://github.com/pivotal/jasmine-gem",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 13,
+            "description": "## Require &amp; Instantiate\n\nRequire Jasmine's core files. Specifically, this requires and attaches all of Jasmine's code to the `jasmine` reference.",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 20,
+            "description": "Since this is being run in a browser and the results should populate to an HTML page, require the HTML-specific Jasmine code, injecting the same reference.",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 25,
+            "description": "Create the Jasmine environment. This is used to run all specs in a project.",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 30,
+            "description": "## The Global Interface\n\nBuild up the functions that will be exposed as the Jasmine public interface. A project can customize, rename or alias any of these functions as desired, provided the implementation remains unchanged.",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 77,
+            "description": "Add all of the Jasmine global/public interface to the proper global, so a project can use the public interface directly. For example, calling `describe` in specs instead of `jasmine.getEnv().describe`.",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 86,
+            "description": "Expose the interface for adding custom equality testers.",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 93,
+            "description": "Expose the interface for adding custom expectation matchers",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 100,
+            "description": "Expose the mock interface for the JavaScript timeout functions",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 107,
+            "description": "## Runner Parameters\n\nMore browser specific code - wrap the query string in an object and to allow for getting/setting parameters from the runner user interface.",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 120,
+            "description": "## Reporters\nThe `HtmlReporter` builds all of the HTML UI for the runner page. This reporter paints the dots, stars, and x's for specs, as well as all spec names and all failures (if any).",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 133,
+            "description": "The `jsApiReporter` also receives spec results, and is used by any environment that needs to extract the results  from JavaScript.",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 139,
+            "description": "Filter which specs will be run by matching the start of the full name against the `spec` query param.",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 150,
+            "description": "Setting up timing functions to be able to be overridden. Certain browsers (Safari, IE 8, phantomjs) require this hack.",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 158,
+            "description": "## Execution\n\nReplace the browser window's `onload`, ensure it's called, and then run all of the loaded specs. This includes initializing the `HtmlReporter` instance and then executing the loaded Jasmine environment. All of this will happen after all of the specs are loaded.",
+            "class": "Pipe"
+        },
+        {
+            "file": "test/jasmine-2.0.0/boot.js",
+            "line": 173,
+            "description": "Helper function for readability above.",
+            "class": "Pipe"
+        },
+        {
+            "file": "pipe.js",
+            "line": 52,
+            "description": "Add a job to the pipe.\n\nJob callback:\n\n    function(pipe, [optional arg]) {}",
+            "itemtype": "method",
+            "name": "add",
+            "params": [
+                {
+                    "name": "job",
+                    "description": "The job callback.",
+                    "type": "Function"
+                },
+                {
+                    "name": "arg",
+                    "description": "An optional arg that will be passed as second argument of\n           the job function."
+                }
+            ],
+            "class": "Pipe"
+        },
+        {
+            "file": "pipe.js",
+            "line": 74,
+            "description": "Add a job for each item of the argument list.\n\nJob callback:\n\n    function(pipe, arg) {}",
+            "itemtype": "method",
+            "name": "addAll",
+            "params": [
+                {
+                    "name": "job",
+                    "description": "The job callback.",
+                    "type": "Function"
+                },
+                {
+                    "name": "argList",
+                    "description": "Argument list (each item of the list will be passed\n                       as second argument of the job function).",
+                    "type": "Array"
+                }
+            ],
+            "class": "Pipe"
+        },
+        {
+            "file": "pipe.js",
+            "line": 92,
+            "description": "Run the pipe.",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "",
+                    "description": "Any argument passed to this function will be passed to\n         the first job function.",
+                    "multiple": true
+                }
+            ],
+            "class": "Pipe"
+        },
+        {
+            "file": "pipe.js",
+            "line": 110,
+            "description": "Must be called if any error append in a job.",
+            "itemtype": "method",
+            "name": "_error",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "",
+                    "description": "Any argument passed to this function will be passed to the\n         errorCallback function.",
+                    "multiple": true
+                }
+            ],
+            "class": "Pipe"
+        },
+        {
+            "file": "pipe.js",
+            "line": 123,
+            "description": "Must be called by each jobs when they are finished.",
+            "itemtype": "method",
+            "name": "_next",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "jobId",
+                    "description": "The id of the job."
+                },
+                {
+                    "name": "",
+                    "description": "Any additional argument passed to this function will be passed to the next\n         job function or to the successCallback function if it is the last job.",
+                    "multiple": true
+                }
+            ],
+            "class": "Pipe"
+        },
+        {
+            "file": "pipe.js",
+            "line": 176,
+            "description": "Must be called by the job when it was sucessfully finished.",
+            "itemtype": "method",
+            "name": "done",
+            "static": 1,
+            "params": [
+                {
+                    "name": "",
+                    "description": "Any argument passed to this function will be passed to the next\n         job function or to the successCallback function if it is the last job.",
+                    "multiple": true
+                }
+            ],
+            "class": "Jobs pipe object"
+        },
+        {
+            "file": "pipe.js",
+            "line": 184,
+            "description": "Must be called by the job when an error occure (that will\nstop the pipe and call the errorCallback function).",
+            "itemtype": "method",
+            "name": "error",
+            "static": 1,
+            "params": [
+                {
+                    "name": "",
+                    "description": "Any argument passed to this function will be passed to the\n         errorCallback function.",
+                    "multiple": true
+                }
+            ],
+            "class": "Jobs pipe object"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nStarting with version 2.0, this file \"boots\" Jasmine, performing all of the necessary initialization before executing the loaded environment and all of a project's specs. This file should be loaded after `jasmine.js`, but before any project source files or spec files are loaded. Thus this file can also be used to customize Jasmine for a project.\n\nIf a project is using Jasmine via the standalone distribution, this file can be customized directly. If a project is using Jasmine via the [Ruby gem][jasmine-gem], this file can be copied into the support directory via `jasmine copy_boot_js`. Other environments (e.g., Python) will have different mechanisms.\n\nThe location of `boot.js` can be specified and/or overridden in `jasmine.yml`.\n\n[jasmine-gem]: http://github.com/pivotal/jasmine-gem",
+            "line": " test/jasmine-2.0.0/boot.js:1"
+        },
+        {
+            "message": "Missing item type\n## Require &amp; Instantiate\n\nRequire Jasmine's core files. Specifically, this requires and attaches all of Jasmine's code to the `jasmine` reference.",
+            "line": " test/jasmine-2.0.0/boot.js:13"
+        },
+        {
+            "message": "Missing item type\nSince this is being run in a browser and the results should populate to an HTML page, require the HTML-specific Jasmine code, injecting the same reference.",
+            "line": " test/jasmine-2.0.0/boot.js:20"
+        },
+        {
+            "message": "Missing item type\nCreate the Jasmine environment. This is used to run all specs in a project.",
+            "line": " test/jasmine-2.0.0/boot.js:25"
+        },
+        {
+            "message": "Missing item type\n## The Global Interface\n\nBuild up the functions that will be exposed as the Jasmine public interface. A project can customize, rename or alias any of these functions as desired, provided the implementation remains unchanged.",
+            "line": " test/jasmine-2.0.0/boot.js:30"
+        },
+        {
+            "message": "Missing item type\nAdd all of the Jasmine global/public interface to the proper global, so a project can use the public interface directly. For example, calling `describe` in specs instead of `jasmine.getEnv().describe`.",
+            "line": " test/jasmine-2.0.0/boot.js:77"
+        },
+        {
+            "message": "Missing item type\nExpose the interface for adding custom equality testers.",
+            "line": " test/jasmine-2.0.0/boot.js:86"
+        },
+        {
+            "message": "Missing item type\nExpose the interface for adding custom expectation matchers",
+            "line": " test/jasmine-2.0.0/boot.js:93"
+        },
+        {
+            "message": "Missing item type\nExpose the mock interface for the JavaScript timeout functions",
+            "line": " test/jasmine-2.0.0/boot.js:100"
+        },
+        {
+            "message": "Missing item type\n## Runner Parameters\n\nMore browser specific code - wrap the query string in an object and to allow for getting/setting parameters from the runner user interface.",
+            "line": " test/jasmine-2.0.0/boot.js:107"
+        },
+        {
+            "message": "Missing item type\n## Reporters\nThe `HtmlReporter` builds all of the HTML UI for the runner page. This reporter paints the dots, stars, and x's for specs, as well as all spec names and all failures (if any).",
+            "line": " test/jasmine-2.0.0/boot.js:120"
+        },
+        {
+            "message": "Missing item type\nThe `jsApiReporter` also receives spec results, and is used by any environment that needs to extract the results  from JavaScript.",
+            "line": " test/jasmine-2.0.0/boot.js:133"
+        },
+        {
+            "message": "Missing item type\nFilter which specs will be run by matching the start of the full name against the `spec` query param.",
+            "line": " test/jasmine-2.0.0/boot.js:139"
+        },
+        {
+            "message": "Missing item type\nSetting up timing functions to be able to be overridden. Certain browsers (Safari, IE 8, phantomjs) require this hack.",
+            "line": " test/jasmine-2.0.0/boot.js:150"
+        },
+        {
+            "message": "Missing item type\n## Execution\n\nReplace the browser window's `onload`, ensure it's called, and then run all of the loaded specs. This includes initializing the `HtmlReporter` instance and then executing the loaded Jasmine environment. All of this will happen after all of the specs are loaded.",
+            "line": " test/jasmine-2.0.0/boot.js:158"
+        },
+        {
+            "message": "Missing item type\nHelper function for readability above.",
+            "line": " test/jasmine-2.0.0/boot.js:173"
+        }
+    ]
+}
