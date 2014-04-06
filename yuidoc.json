@@ -7,7 +7,7 @@
         "linkNatives": "true",
         "attributesEmit": "true",
         "selleck": "true",
-        "paths": ["./"],
+        "paths": ["./src/"],
         "outdir": "./doc/"
     }
 }
