@@ -74,7 +74,7 @@ var Pipe = (function() {
             return;
         }
         // Progress
-        this.progressCallback(jobId / (this._jobs.length - 1));
+        this.progressCallback((jobId+1) / (this._jobs.length));
         // All done
         if (jobId == this._jobs.length -1) {
             var args = [];

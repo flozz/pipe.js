@@ -48,6 +48,16 @@ describe("Pipe asynchronous jobs without error", function() {
         }, 100);
     });
 
+    it("checks progress", function(done) {
+        p.run(10);
+        setTimeout(function() {
+            expect(p.progressCallback).toHaveBeenCalledWith(0);
+            expect(p.progressCallback).toHaveBeenCalledWith(.5);
+            expect(p.progressCallback).toHaveBeenCalledWith(1);
+            done();
+        }, 100);
+    });
+
 });
 
 
@@ -92,6 +102,15 @@ describe("Pipe asynchronous jobs with error", function() {
         }, 100);
     });
 
+    it("checks progress", function(done) {
+        p.run(10);
+        setTimeout(function() {
+            expect(p.progressCallback).toHaveBeenCalledWith(0);
+            expect(p.progressCallback).toHaveBeenCalledWith(.5);
+            done();
+        }, 100);
+    });
+
 });
 
 
@@ -128,7 +147,7 @@ describe("Pipe asynchronous jobs with a list of value (.addAll())", function() {
         setTimeout(function() {
             expect(p.endCallback).toHaveBeenCalledWith(15);
             done();
-        }, 100);
+        }, 200);
     });
 
     it("checks result with input=10", function(done) {
@@ -136,7 +155,19 @@ describe("Pipe asynchronous jobs with a list of value (.addAll())", function() {
         setTimeout(function() {
             expect(p.endCallback).toHaveBeenCalledWith(25);
             done();
-        }, 100);
+        }, 200);
+    });
+
+    it("checks progress", function(done) {
+        p.run();
+        setTimeout(function() {
+            expect(p.progressCallback).toHaveBeenCalledWith(0);
+            expect(p.progressCallback).toHaveBeenCalledWith(.25);
+            expect(p.progressCallback).toHaveBeenCalledWith(.5);
+            expect(p.progressCallback).toHaveBeenCalledWith(.75);
+            expect(p.progressCallback).toHaveBeenCalledWith(1);
+            done();
+        }, 200);
     });
 
 });
