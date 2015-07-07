@@ -158,7 +158,7 @@ Pipe.prototype._next = function(jobId) {
         this._jobs[jobId].job.apply(this, args);
     }
     catch (error) {
-        this.error(error);
+        this._error(error);
     }
 };
 
