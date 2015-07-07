@@ -1,6 +1,6 @@
 {
   "name": "flozz-pipejs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simply queue asynchrone jobs in javascript",
   "main": "src/pipe.js",
   "directories": {
