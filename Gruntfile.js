@@ -40,6 +40,15 @@ module.exports = function(grunt) {
                     tabtospace: 4
                 }
             }
+        },
+
+        jasmine: {
+            pivotal: {
+                src: 'dist/pipe.js',
+                options: {
+                    specs: 'test/*Spec.js'
+                }
+            }
         }
 
     });
@@ -48,8 +57,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-yuidoc');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
 
     // Default task(s).
     grunt.registerTask('default', ['browserify', 'uglify', 'yuidoc']);
+    grunt.registerTask('test', ['jasmine']);
 
 };

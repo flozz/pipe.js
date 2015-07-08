@@ -1,5 +1,9 @@
 # Pipe.js
 
+[ ![Build Status](https://api.travis-ci.org/flozz/pipe.js.svg?branch=master) ](https://travis-ci.org/flozz/pipe.js)
+[ ![NPM Version](http://img.shields.io/npm/v/flozz-pipejs.svg?style=flat) ](https://www.npmjs.com/package/flozz-pipejs)
+[ ![License](http://img.shields.io/npm/l/flozz-pipejs.svg?style=flat) ](https://www.npmjs.com/package/flozz-pipejs)
+
 ![Pipe](http://pix.toile-libre.org/upload/original/1396295604.png)
 
 Simply queue asynchrone jobs.
