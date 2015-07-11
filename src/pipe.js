@@ -134,10 +134,11 @@ Pipe.prototype._next = function(jobId) {
     // Progress
     this.progressCallback((jobId+1) / (this._jobs.length));
     // All done
+    var args, i;
     if (jobId == this._jobs.length -1) {
-        var args = [];
+        args = [];
         if (arguments.length > 1) {
-            for (var i=1 ; i<arguments.length ; i++) {
+            for (i=1 ; i<arguments.length ; i++) {
                 args.push(arguments[i]);
             }
         }
@@ -147,9 +148,9 @@ Pipe.prototype._next = function(jobId) {
     }
     // Next Job
     jobId++;
-    var args = [this._jobs[jobId]].concat(this._jobs[jobId].args);
+    args = [this._jobs[jobId]].concat(this._jobs[jobId].args);
     if (arguments.length > 1) {
-        for (var i=1 ; i<arguments.length ; i++) {
+        for (i=1 ; i<arguments.length ; i++) {
             args.push(arguments[i]);
         }
     }

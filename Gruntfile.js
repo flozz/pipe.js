@@ -49,6 +49,21 @@ module.exports = function(grunt) {
                     specs: 'test/*Spec.js'
                 }
             }
+        },
+
+        jshint: {
+            all: ['src/*.js'],
+            options: {
+                futurehostile: true,
+                freeze: true,
+                latedef: true,
+                noarg: true,
+                nocomma: true,
+                nonbsp: true,
+                nonew: true,
+                undef: true,
+                browserify: true
+            }
         }
 
     });
@@ -58,9 +73,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-yuidoc');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // Default task(s).
     grunt.registerTask('default', ['browserify', 'uglify', 'yuidoc']);
-    grunt.registerTask('test', ['jasmine']);
+    grunt.registerTask('test', ['jshint', 'jasmine']);
 
 };
