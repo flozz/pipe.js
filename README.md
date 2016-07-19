@@ -4,10 +4,14 @@
 [ ![NPM Version](http://img.shields.io/npm/v/flozz-pipejs.svg?style=flat) ](https://www.npmjs.com/package/flozz-pipejs)
 [ ![License](http://img.shields.io/npm/l/flozz-pipejs.svg?style=flat) ](https://www.npmjs.com/package/flozz-pipejs)
 
-![Pipe](http://pix.toile-libre.org/upload/original/1396295604.png)
+
+> This lib is deprecated, do not use it in new projects: use [Promises][]
+> instead. This lib will remain on NPM for compatibility purpose.
+
+
+![Pipe](https://raw.githubusercontent.com/flozz/pipe.js/master/logo.png)
 
 Simply queue asynchrone jobs.
-
 
 
 ## Create a Pipe
@@ -42,7 +46,8 @@ p.add(function(pipe, arg) {
 
 ### Add multiple job in one round
 
-You can add multiple jobs whose share the same code but that will receive different arguments:
+You can add multiple jobs whose share the same code but that will receive
+different arguments:
 
 ```javascript
 p.addAll(function(pipe, arg) {
@@ -74,21 +79,23 @@ Once all jobs are in the Pipe, you can run it:
 p.run()
 ```
 
-**NOTE:** Any argument passed to the `run()` method will be forwarded to the first job.
+**NOTE:** Any argument passed to the `run()` method will be forwarded to the
+first job.
 
 
 ## About jobs and pipe object
 
-Jobs are just Javascript functions. Each job receive a `pipe` object as first parameter.
+Jobs are just Javascript functions. Each job receive a `pipe` object as first
+parameter.
 
 The `pipe` object provides two useful functions:
 
-  * `pipe.done()`: must be called when the job is done (this will start the next job).
-     Any argument passed to this function will be forwarded to the next job or to the `successCallback`
-     function if it is the last job.
-
-  * `pipe.error()`: must be called if an error occurred (this will stop the Pipe and call the `errorCallback`).
-     Any argument passed to this function will be forwarded to the `errorCallback` function.
+* `pipe.done()`: must be called when the job is done (this will start the next
+  job). Any argument passed to this function will be forwarded to the next job
+  or to the `successCallback` function if it is the last job.
+* `pipe.error()`: must be called if an error occurred (this will stop the Pipe
+  and call the `errorCallback`). Any argument passed to this function will be
+  forwarded to the `errorCallback` function.
 
 **Example of Job:**
 
@@ -104,3 +111,6 @@ function job(pipe, url) {
     img.src = url;
 }
 ```
+
+
+[Promises]: https://bitsofco.de/javascript-promises-101/
