@@ -3,3 +3,4 @@ dist
 Gruntfile.js
 test
 .travis.yml
+logo.png
