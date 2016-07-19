@@ -1,2 +1,5 @@
 doc
 dist
+Gruntfile.js
+test
+.travis.yml
